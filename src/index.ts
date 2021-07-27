@@ -15,59 +15,91 @@ let user = {
     id: 0,
     first_name: 'Miguel',
     last_name: 'Mazariegos',
-    avatar: 'https://www.nj.com/resizer/zovGSasCaR41h_yUGYHXbVTQW2A=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/SJGKVE5UNVESVCW7BBOHKQCZVE.jpg'
+    position: 'Developer',
+    avatar: 'https://www.nj.com/resizer/zovGSasCaR41h_yUGYHXbVTQW2A=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/SJGKVE5UNVESVCW7BBOHKQCZVE.jpg',
+    publication: '',
+    comment: ''
 }
 
 let user1 = {
     id: 1,
     first_name: 'Angel',
     last_name: 'Ramirez',
-    avatar: 'https://www.nj.com/resizer/zovGSasCaR41h_yUGYHXbVTQW2A=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/SJGKVE5UNVESVCW7BBOHKQCZVE.jpg'
+    position: 'Developer',
+    avatar: 'https://www.nj.com/resizer/zovGSasCaR41h_yUGYHXbVTQW2A=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/SJGKVE5UNVESVCW7BBOHKQCZVE.jpg',
+    publication: '',
+    comment: ''
 }
 
 let user2 = {
     id: 2,
     first_name: 'Michael',
     last_name: 'Lawson',
-    avatar: 'https://reqres.in/img/faces/7-image.jpg'
+    position: 'Developer',
+    avatar: 'https://reqres.in/img/faces/7-image.jpg',
+    publication: '',
+    comment: ''
 }
 
 let user3 = {
     id: 3,
     first_name: 'Lindsay',
     last_name: 'Ferguson',
-    avatar: 'https://reqres.in/img/faces/8-image.jpg'
+    position: 'QA',
+    avatar: 'https://reqres.in/img/faces/8-image.jpg',
+    publication: '',
+    comment: ''
 }
 
 let user4 = {
     id: 4,
     first_name: 'Tobias',
     last_name: 'Funke',
-    avatar: 'https://reqres.in/img/faces/9-image.jpg'
+    position: 'RRHH',
+    avatar: 'https://reqres.in/img/faces/9-image.jpg',
+    publication: '',
+    comment: ''
 }
 
 let user5 = {
     id: 5,
     first_name: 'Byron',
     last_name: 'Fields',
-    avatar: 'https://reqres.in/img/faces/10-image.jpg'
+    position: 'Developer',
+    avatar: 'https://reqres.in/img/faces/10-image.jpg',
+    publication: '',
+    comment: ''
 }
 
 let user6 = {
     id: 6,
     first_name: 'George',
     last_name: 'Edwards',
-    avatar: 'https://reqres.in/img/faces/11-image.jpg'
+    position: 'Developer',
+    avatar: 'https://reqres.in/img/faces/11-image.jpg',
+    publication: '',
+    comment: ''
 }
 
 let user7 = {
     id: 7,
     first_name: 'Rachel',
     last_name: 'Howell',
-    avatar: 'https://reqres.in/img/faces/12-image.jpg'
+    position: 'QA',
+    avatar: 'https://reqres.in/img/faces/12-image.jpg',
+    publication: '',
+    comment: ''
 }
 
-const users: { id: number; first_name: string; last_name: string; avatar: string; }[] = [];
+const users: { 
+    id: number; 
+    first_name: string; 
+    last_name: string; 
+    position: string; 
+    avatar: string;
+    publication: string;
+    comment: string;
+}[] = [];
 
 users.push(user);
 users.push(user1);
@@ -126,17 +158,21 @@ app.put('/users/:id', (req, res) => {
 });
 
 app.delete('/users/:id', (req, res) => {
-    const id = req.params;
-    users.forEach((user) => {
-        if (user.id === Number(id.id)) {
-            // users.splice(user.id);
-            // delete users[user.id];
-            let a = users.indexOf(user);
-            console.log(a);
-            users.splice(a, 1);
-            res.json({mesage: 'User Delete'});
-        }
-    });
+    try {
+        const id = req.params;
+        users.forEach((user) => {
+            if (user.id === Number(id.id)) {
+                // users.splice(user.id);
+                // delete users[user.id];
+                let a = users.indexOf(user);
+                console.log(a);
+                users.splice(a, 1);
+                res.json({mesage: 'User Delete'});
+            }
+        });
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 app.listen(port, () => {
